@@ -1,0 +1,53 @@
+
+/* ==========================================================================
+   DEMO.CSS
+   ========================================================================== */
+
+.layout-centers {
+  max-width: 1366px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 50px;
+  background: transparent;
+  z-index: 0;
+  /*text-shadow: 2px 2px 4px rgba(0,0,0,0.5);*/
+}
+
+/*
+ * menu
+ */
+
+
+.wrapmenus {
+  font-family: "GeoSans", sans-serif;
+  float: left;
+}
+
+.wrapmenus ul {
+  margin: 0;
+  list-style: none;
+}
+
+.wrapmenus li {
+  display: inline-block;
+  margin-right: 20px;
+  margin-top: 15px;
+}
+
+.wrapmenus li a {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: white;
+}

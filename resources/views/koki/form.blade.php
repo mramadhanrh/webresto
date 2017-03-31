@@ -49,7 +49,7 @@
         							<input type="text" name="nama_lengkap" class="form-control" id="nama_lengkap" placeholder="Nama Koki" value="{{ @$result->nama_lengkap }}"/>
         						</div>
         						<div class="form-group">
-        							<label for="jenis_kelamin">Jurusan</label>
+        							<label for="jenis_kelamin">Jenis Kelamin</label>
                       <select class="form-control" name="jenis_kelamin">
                         <option value="Laki-Laki">Laki-Laki</option>
                         <option value="Perempuan">Perempuan</option>

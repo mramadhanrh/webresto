@@ -4,13 +4,13 @@
 <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Kelas
+        Data Koki
         <small>it all starts here</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Examples</a></li>
-        <li class="active">Data Kelas </li>
+        <li class="active">Data Koki </li>
       </ol>
     </section>
 
@@ -29,7 +29,7 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Data Kelas</h3>
+          <h3 class="box-title">Data Koki</h3>
           <a href="{{ url ('koki/add') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data </a>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">

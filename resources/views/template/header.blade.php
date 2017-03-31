@@ -135,7 +135,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="{{ asset('assets') }}/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -143,7 +143,7 @@
                 <img src="{{ asset('assets') }}/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
+                  {{ Auth::user()->name }} - Web Developer
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -168,7 +168,12 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                
+                  <a href="{{ url('/logout') }}" class="btn btn-default btn-flat" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Sign out</a>
+                  <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                  </form>
                 </div>
               </li>
             </ul>
@@ -194,7 +199,7 @@
           <img src="{{ asset('assets') }}/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>{{ Auth::user()->name }}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -213,7 +218,8 @@
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li><a href="{{ url('koki/')}}"><i class="fa fa-user"></i> <span>Daftar Koki</span></a></li>
-
+        <li><a href="{{ url('makanan/')}}"><i class="fa fa-apple"></i> <span>Daftar Makanan</span></a></li>
+        <li><a href="{{ url('minuman/')}}"><i class="fa fa-glass"></i> <span>Daftar Minuman</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->

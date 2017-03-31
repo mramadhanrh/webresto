@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class KokiController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -49,12 +54,6 @@ class KokiController extends Controller
 
       $input = $request->all(); // Mengambil semua inputan
 
-//      if($request->hasFile('foto') && $request->file('foto')->isValid()){
-//        $filename = $request->file('foto')->getClientOriginalExtension();
-//        $request->file('foto')->storeAs('', $filename);
-//        $input['foto'] = $filename;
-//      }
-
         if($request->hasFile('foto'))
         {
             $foto = $request->file('foto');
@@ -96,26 +95,26 @@ class KokiController extends Controller
      */
     public function edit($id)
     {
-      $rules = [
-        'nama_lengkap' => 'required|max:100',
-        'jenis_kelamin' => 'required',
-        'alamat' => 'required',
-        'no_telp' => 'required',
-        'foto' => 'required|mimes:jpeg,png|max:512'
-      ];
+      // $rules = [
+      //   'nama_lengkap' => 'required|max:100',
+      //   'jenis_kelamin' => 'required',
+      //   'alamat' => 'required',
+      //   'no_telp' => 'required',
+      //   'foto' => 'required|mimes:jpeg,png|max:512'
+      // ];
 
-      $this->validate($request, $rules);
+      // $this->validate($request, $rules);
 
-      $input = $request->all(); // Mengambil semua inputan
-      $result = \App\Koki::where('id_koki', $id)->first();
+      // $input = $request->all(); // Mengambil semua inputan
+      // $result = \App\Koki::where('id_koki', $id)->first();
 
-      if($request->hasFile('foto') && $request->file('foto')->isValid()){
-        $filename = $request->file('foto')->getClientOriginalExtension();
-        $request->file('foto')->storeAs('', $filename);
-        $input['foto'] = $filename;
-      }
+      // if($request->hasFile('foto') && $request->file('foto')->isValid()){
+      //   $filename = $request->file('foto')->getClientOriginalExtension();
+      //   $request->file('foto')->storeAs('', $filename);
+      //   $input['foto'] = $filename;
+      // }
 
-      $status = $result->update($input);
+      // $status = $result->update($input);
 
       $data['edit'] = true;
       $data['result'] = \App\Koki::where('id_koki', $id)->first();
@@ -131,15 +130,44 @@ class KokiController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+      $rules = [
+        'nama_lengkap' => 'required|max:100',
+        'jenis_kelamin' => 'required',
+        'alamat' => 'required',
+        'no_telp' => 'required',
+        'foto' => 'required|mimes:jpeg,png|max:512'
+      ];
+
+      $this->validate($request, $rules);
+
       $input = $request->all(); // Mengambil semua inputan
 
+        if($request->hasFile('foto'))
+        {
+            $foto = $request->file('foto');
+            $ext = $foto->getClientOriginalExtension();
+
+            if($request->file('foto')->isValid())
+            {
+                $foto_name = date('YmdHis').".$ext";
+                $upload_path = 'uploads';
+                $request->file('foto')->move($upload_path,$foto_name);
+                $input['foto'] = $foto_name;
+            }
+        }
+
       $status = \App\Koki::where('id_koki', $id)->first()->update($input);
+
+      $input = $request->all(); // Mengambil semua inputan
+      
       if($status){
         return redirect('koki')->with('success', 'Data berhasil diubah');
       }else{
         return redirect('koki/' . $id .'/edit')->with('error', 'Data gagal diubah');
       }
     }
+
 
     /**
      * Remove the specified resource from storage.

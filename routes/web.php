@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing');
 });
 
 /*Route::get('/belajar', function(){
@@ -36,11 +36,29 @@ Route::patch('/koki/{id}/edit', 'KokiController@update');
 Route::get('/koki/{id}/destroy', 'KokiController@destroy');
 //
 
-Route::get('/kelas', 'KelasController@index');
-Route::get('/kelas/add', 'KelasController@create');
-Route::post('/kelas/add', 'KelasController@store');
+Route::get('/makanan', 'MakananController@index');
+Route::get('/makanan/add', 'MakananController@create');
+Route::post('/makanan/add', 'MakananController@store');
 
-Route::get('/kelas/{id}/edit', 'KelasController@edit');
-Route::patch('/kelas/{id}/edit', 'KelasController@update');
+Route::get('/makanan/{id}/edit', 'MakananController@edit');
+Route::patch('/makanan/{id}/edit', 'MakananController@update');
 
-Route::get('/kelas/{id}/destroy', 'KelasController@destroy');
+Route::get('/makanan/{id}/destroy', 'MakananController@destroy');
+
+//
+
+Route::get('/minuman', 'MinumanController@index');
+Route::get('/minuman/add', 'MinumanController@create');
+Route::post('/minuman/add', 'MinumanController@store');
+
+Route::get('/minuman/{id}/edit', 'MinumanController@edit');
+Route::patch('/minuman/{id}/edit', 'MinumanController@update');
+
+Route::get('/minuman/{id}/destroy', 'MinumanController@destroy');
+
+
+//
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
